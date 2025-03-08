@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direwolf LAB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/css/main.css">
+  <meta name="description" content="Direwolf LAB">
+</head>
+<body class="antialiased">
+  <!-- 噪点背景 -->
+  <div class="noise-bg"></div>
+  
+  <!-- 3D背景画布 -->
+  <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+  
+  <!-- 预加载动画 -->
+  <div class="preloader fixed inset-0 bg-primary flex items-center justify-center z-50">
+    <div class="flex flex-col items-center">
+      <div class="w-24 h-24 relative">
+        <div class="absolute inset-0 rounded-full border-4 border-t-accent border-r-accent/20 border-b-accent/20 border-l-accent/20 animate-spin"></div>
+      </div>
+      <p class="mt-6 text-neutral/70 font-display">loading...</p>
+    </div>
+  </div>
+  
+  <!-- 顶部导航 -->
+  <header class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-black/15 backdrop-blur-md">
+    <div class="container-custom py-6">
+      <nav class="flex items-center justify-between">
+        <a href="#" class="magnetic-item">
+          <div class="text-2xl font-display font-bold text-white">
+            <span class="gradient-text">Direwolf LAB</span>
+          </div>
+        </a>
+        
+        <!-- 桌面菜单 -->
+        <ul class="hidden md:flex space-x-10">
+          <li><a href="#" class="magnetic-item text-neutral/70 hover:text-accent transition-colors">Home</a></li>
+          <li><a href="#about" class="magnetic-item text-neutral/70 hover:text-accent transition-colors">About me</a></li>
+          <li><a href="#work" class="magnetic-item text-neutral/70 hover:text-accent transition-colors">Projects</a></li>
+          <li><a href="#contact" class="magnetic-item text-neutral/70 hover:text-accent transition-colors">Contact me</a></li>
+        </ul>
+        
+        <!-- 移动端菜单按钮 (fake) -->
+        <button id="menu-toggle" class="md:hidden relative z-50 magnetic-item w-10 h-10 focus:outline-none">
+          <span class="block w-8 h-0.5 bg-white mb-1.5 transition-all"></span>
+          <span class="block w-8 h-0.5 bg-white mb-1.5 transition-all"></span>
+          <span class="block w-8 h-0.5 bg-white transition-all"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- 英雄区块 -->
+  <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
+    <div class="container-custom relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <h1 class="text-5xl md:text-6xl font-display font-bold hero-text">
+            Breaking the boundaries<br><span class="gradient-text">using voice</span>
+          </h1>
+          <p class="text-xl text-neutral/70 max-w-md hero-text">
+            
+          </p>
+          <div class="flex flex-wrap gap-4 hero-cta">
+            <a href="#work" class="btn-primary">
+              Projects
+            </a>
+            <a href="#contact" class="btn-outline">
+              Contact me
+            </a>
+          </div>
+        </div>
+        <div class="relative hero-image pb-[20vh] pt-[2vh] pl-[2vw] pr-[1vw] tilt-card">
+          <div class="aspect-square rounded-xl overflow-hidden glass-card p-4 parallax-img parallax-scroll-img">
+            <img src="src/assets/icon.PNG" alt="me" class="w-full h-full rounded object-cover">
+            
+            <!-- 几何装饰元素 -->
+            <div class="absolute -right-8 -bottom-8 w-20 h-20 rounded-full bg-accent/20 blur-md"></div>
+            <div class="absolute -left-12 -top-12 w-32 h-32 rounded-full border border-accent/30"></div>
+          </div>
+          
+          <!-- 浮动元素装饰 -->
+          <div class="absolute top-0 right-20 w-20 h-20 parallax-element" data-speed="0.05" data-x-offset="10" data-y-offset="0">
+            <div class="w-full h-full rounded-lg border border-white/10 rotate-12 backdrop-blur-sm bg-white/5"></div>
+          </div>
+          <div class="absolute bottom-60 -right-10 w-16 h-16 parallax-element" data-speed="0.08" data-x-offset="-20" data-y-offset="20">
+            <div class="w-full h-full rounded-full bg-accent/10 backdrop-blur-sm border border-accent/20"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 滚动指示器 -->
+    <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+      <div class="w-5 h-10 rounded-full border border-neutral/20 flex justify-center">
+        <div class="w-1.5 h-1.5 rounded-full bg-accent animate-bounce mt-2"></div>
+      </div>
+      <span class="text-neutral/50 text-sm mb-2">discover more...</span>
+    </div>
+  </section>
+  
+  <!-- 关于我们 -->
+  <section id="about" class="section bg-secondary/50 relative overflow-hidden">
+    <div class="container-custom relative z-10">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="order-2 md:order-1 relative">
+          <div class="image-reveal overflow-hidden rounded-2xl w-full aspect-[1/1] parallax-img parallax-scroll-img">
+            <img src="src/assets/5.png" alt="aboutme" class="w-full h-full object-cover">
+          </div>
+          
+          <!-- 浮动数据卡片 -->
+          <div class="absolute right-5 top-3 glass-card rounded-xl p-4 backdrop-blur-lg parallax-element bg-black/50" data-speed="0.03">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-black/15 flex items-center justify-center mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs text-neutral/50">Projects</div>
+                <div class="text-xl font-bold counter" data-target="50">0</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute left-5 -bottom-12 glass-card rounded-xl p-4 backdrop-blur-lg parallax-element bg-black/50" data-speed="0.05">
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-black/15 flex items-center justify-center mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs text-neutral/50">Skill lv.</div>
+                <div class="text-xl font-bold counter" data-target="98">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="order-1 md:order-2">
+          <span class="text-sm uppercase tracking-widest text-accent">About me</span>
+          <h2 class="text-4xl md:text-5xl font-display font-bold mt-2 mb-6 reveal-text">Racing to the<br> unvoiced future</h2>
+          <div class="space-y-6 text-neutral/80">
+            <p class="mt-4 max-w-2xl mx-auto text-neutral/70 split-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae ex distinctio molestiae quaerat eveniet nemo eius atque repellendus mollitia placeat suscipit nobis, accusantium voluptate non beatae cupiditate dolorem quo inventore!<br><br><br><br><br><br></p>
+          </div>
+          
+          <div class="mt-8">
+            <a href="#services" class="inline-block magnetic-item relative glow">
+              <span class="text-accent font-medium">See more about me</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-2 text-accent" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 横向滚动项目展示 -->
+  <section id="work" class="horizontal-scroll-section min-h-screen relative">
+    <div class="absolute inset-0 from-primary/20 to-primary/80 z-10 pointer-events-none"></div>
+    
+    <div class="sticky top-0 py-20 overflow-hidden">
+      <div class="container-custom mb-10 relative z-20">
+        <span class="text-sm uppercase tracking-widest text-accent">demos</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold mt-2">My projects</h2>
+        <p class="mt-4 max-w-2xl text-neutral/70">My most recent projects</p>
+      </div>
+      
+      <div class="horizontal-items flex pl-20 space-x-8 relative z-20">
+        <!-- 项目卡片1 -->
+        <div class="min-w-[350px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/800x600/1e293b/38bdf8?text=P01" alt="demo" class="w-full h-full object-cover transition-transform hover:scale-105 duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-xs text-accent uppercase tracking-wider">Item Design</span>
+            <h3 class="text-xl font-display font-bold mt-2">Inflatable Anal Plug for kinky furries</h3>
+            <p class="text-neutral/70 mt-2">Inflatable anal plug for kinky furries with darkest fetishes.</p>
+            <a href="#" class="mt-4 inline-block text-accent hover:text-white transition-colors">Learn more &rarr;</a>
+          </div>
+        </div>
+        
+        <!-- 项目卡片2 -->
+        <div class="min-w-[350px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/800x600/1e293b/38bdf8?text=P02" alt="demo" class="w-full h-full object-cover transition-transform hover:scale-105 duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-xs text-accent uppercase tracking-wider">Item Design</span>
+            <h3 class="text-xl font-display font-bold mt-2">Dr. ookamitai's Endless Penis Edger</h3>
+            <p class="text-neutral/70 mt-2">Your edging fantasies, all in one.</p>
+            <a href="#" class="mt-4 inline-block text-accent hover:text-white transition-colors">Learn more &rarr;</a>
+          </div>
+        </div>
+        
+        <!-- 项目卡片3 -->
+        <div class="min-w-[350px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/800x600/1e293b/38bdf8?text=P03" alt="demo" class="w-full h-full object-cover transition-transform hover:scale-105 duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-xs text-accent uppercase tracking-wider">App</span>
+            <h3 class="text-xl font-display font-bold mt-2">PE Scheduler</h3>
+            <p class="text-neutral/70 mt-2">Always forgeting your PE schedule?<br>PE Scheduler gets you covered.</p>
+            <a href="#" class="mt-4 inline-block text-accent hover:text-white transition-colors">Learn more &rarr;</a>
+          </div>
+        </div>
+        
+        <!-- 项目卡片4 -->
+        <div class="min-w-[350px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/800x600/1e293b/38bdf8?text=P04" alt="demo" class="w-full h-full object-cover transition-transform hover:scale-105 duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-xs text-accent uppercase tracking-wider">Placeholder</span>
+            <h3 class="text-xl font-display font-bold mt-2">Placeholder</h3>
+            <p class="text-neutral/70 mt-2">Placeholder</p>
+            <a href="#" class="mt-4 inline-block text-accent hover:text-white transition-colors">Learn more &rarr;</a>
+          </div>
+        </div>
+        
+        <!-- 项目卡片5 -->
+        <div class="min-w-[350px] md:min-w-[500px] glass-card rounded-2xl overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="https://placehold.co/800x600/1e293b/38bdf8?text=P05" alt="demo" class="w-full h-full object-cover transition-transform hover:scale-105 duration-700">
+          </div>
+          <div class="p-6">
+            <span class="text-xs text-accent uppercase tracking-wider">Placeholder</span>
+            <h3 class="text-xl font-display font-bold mt-2">Placeholder</h3>
+            <p class="text-neutral/70 mt-2">Placeholder</p>
+            <a href="#" class="mt-4 inline-block text-accent hover:text-white transition-colors">Learn more &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 联系我们 -->
+  <section id="contact" class="section bg-secondary/30">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-sm uppercase tracking-widest text-accent">Fuck my ass real hard</span>
+          <h2 class="text-4xl md:text-5xl font-display font-bold mt-2 mb-6">Wanna use some gaping holes? ;)</h2>
+          <p class="text-neutral/70 max-w-lg mb-8">
+            DM me for 🍑
+          </p>
+          
+          <!-- 联系信息 -->
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-display font-medium">Emails</h3>
+                <a href="mailto:contact@novastudio.com" class="text-neutral/70 hover:text-accent transition-colors">me@ookamitai.com</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-display font-medium">X</h3>
+                <a href="tel:+861012345678" class="text-neutral/70 hover:text-accent transition-colors">no number 4 u</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-4 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-display font-medium">Address</h3>
+                <p class="text-neutral/70">翻斗大街翻斗花园二号楼1001室</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 社交媒体 -->
+          <div class="mt-8 flex space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/30 transition-colors magnetic-item">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/30 transition-colors magnetic-item">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center hover:bg-accent/30 transition-colors magnetic-item">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 底部 -->
+  <footer class="py-12 bg-primary/80 border-t border-white/5">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div class="md:col-span-2">
+          <a href="#" class="text-2xl font-display font-bold text-white mb-4 inline-block">
+            <span class="gradient-text">Direwolf LAB</span>
+          </a>
+          <p class="text-neutral/70 max-w-md">
+            Direwolf Lab is a creative agency specializing in web development, graphic design, and digital marketing. We create stunning and user-friendly websites that help businesses grow and thrive.
+          </p>
+          
+          <p class="mt-6 text-neutral/50 text-sm">
+            &copy; 2025 ookamitai @ Direwolf LAB. All rights reserved.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-medium mb-4">Links</h4>
+          <ul class="space-y-2 text-neutral/70">
+            <li><a href="#" class="hover:text-accent transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-accent transition-colors">About me</a></li>
+            <li><a href="#work" class="hover:text-accent transition-colors">Projects</a></li>
+            <li><a href="#contact" class="hover:text-accent transition-colors">Contact me</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-medium mb-4">More</h4>
+          <ul class="space-y-2 text-neutral/70">
+            <li><a href="#" class="hover:text-accent transition-colors">Personal Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- 回到顶部按钮 -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent/80 flex items-center justify-center opacity-0 invisible transition-all z-30 magnetic-item backdrop-blur-sm hover:bg-accent">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+  
+  <!-- 加载脚本 -->
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
