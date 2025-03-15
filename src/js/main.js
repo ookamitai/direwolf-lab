@@ -62,27 +62,30 @@ function animateHeroSection() {
   const heroText = document.querySelectorAll('.hero-text');
   const heroImg = document.querySelector('.hero-image');
   const heroCta = document.querySelector('.hero-cta');
-  
+
+  gsap.set([heroText, heroImg, heroCta], { opacity: 0 });
+
   const tl = gsap.timeline({
     defaults: { ease: 'power3.out' }
   });
   
-  tl.from(heroText, {
-    y: 100,
-    opacity: 0,
+  tl.to(heroText, {
+    y: 0,
+    opacity: 1,
     duration: 1,
     stagger: 0.2
   })
-  .from(heroImg, {
-    scale: 0.8,
-    opacity: 0,
+  .to(heroImg, {
+    scale: 1,
+    opacity: 1,
     duration: 1
   }, '-=0.6')
-  .from(heroCta, {
-    y: 30,
-    opacity: 0,
+  .to(heroCta, {
+    y: 0,
+    opacity: 1,
     duration: 0.8
   }, '-=0.4');
+
 }
 
 function initThreeJsBackground() {

@@ -79,6 +79,15 @@
   .parallax-element {
     @apply pointer-events-none absolute;
   }
+
+  .hero-text, .hero-cta {
+    opacity: 0;
+    transform: translateY(30px); /* Ensure elements are off-screen initially */
+  }
+
+  .hero-image {
+    opacity: 0; 
+  }
 }
 
 /* Safari shits */
