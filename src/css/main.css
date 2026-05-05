@@ -87,6 +87,11 @@ main {
   margin: 0;
 }
 
+.hero-attr {
+  text-align: right;
+  margin-top: 1rem;
+}
+
 body.dark .hero-text h1 {
   color: #f0ebe0;
 }
