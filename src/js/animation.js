@@ -67,7 +67,10 @@ function flipOnce(cell, from, to) {
 
   return new Promise((resolve) => {
     window.setTimeout(() => {
+      setPanel(staticTop, to);
       setPanel(staticBottom, to);
+      setPanel(movingTop, to);
+      setPanel(movingBottom, to);
       cell.classList.remove('is-flipping');
       resolve();
     }, FLIP_DURATION);
@@ -84,25 +87,53 @@ async function animateCharacter(cell, finalCharacter, delay) {
   }
 }
 
-export function initSplitFlaps() {
+function renderLabel(label, { animate = true, delay = 0 } = {}) {
+  const originalText = label.dataset.flap;
+  const width = Number(label.dataset.flapWidth || originalText.length);
+  const text = originalText.padEnd(width, ' ');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const labels = [...document.querySelectorAll('[data-flap]')];
 
-  labels.forEach((label, rowIndex) => {
-    const text = label.dataset.flap;
-    label.textContent = '';
-    label.setAttribute('aria-label', text);
+  label.textContent = '';
+  label.setAttribute('aria-label', originalText);
 
-    [...text].forEach((character, characterIndex) => {
-      const cell = createCharacter(character);
-      label.appendChild(cell);
+  [...text].forEach((character, characterIndex) => {
+    const cell = createCharacter(character);
+    label.appendChild(cell);
 
-      if (reducedMotion || character === ' ') {
-        cell.querySelectorAll('.flap-panel').forEach((panel) => setPanel(panel, character));
-        return;
-      }
+    if (reducedMotion || !animate || character === ' ') {
+      cell.querySelectorAll('.flap-panel').forEach((panel) => setPanel(panel, character));
+      return;
+    }
 
-      animateCharacter(cell, character, 80 + rowIndex * 55 + characterIndex * 14);
-    });
+    animateCharacter(cell, character, delay + characterIndex * 12);
   });
+}
+
+function initInteractiveRows() {
+  const activeRows = new WeakSet();
+
+  document.querySelectorAll('.board-row').forEach((row) => {
+    const replay = () => {
+      if (activeRows.has(row)) return;
+      activeRows.add(row);
+
+      row.querySelectorAll('[data-flap]').forEach((label, index) => {
+        renderLabel(label, { animate: true, delay: index * 32 });
+      });
+
+      window.setTimeout(() => activeRows.delete(row), 3000);
+    };
+
+    row.addEventListener('pointerenter', replay);
+    row.addEventListener('focus', replay);
+  });
+}
+
+export function initSplitFlaps() {
+  const labels = [...document.querySelectorAll('[data-flap]')];
+  labels.forEach((label, rowIndex) => {
+    renderLabel(label, { animate: true, delay: 80 + rowIndex * 42 });
+  });
+
+  initInteractiveRows();
 }
