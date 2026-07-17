@@ -1,49 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Direwolf LAB">
-  <meta property="og:description" content="Direwolf LAB">
-  <meta property="og:image" content="src/assets/icon.PNG">
-  <meta property="og:url" content="https://ookamitai.com">
-  <meta property="og:type" content="website">
-  <meta name="description" content="Direwolf LAB">
-  <title>ookamitai</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/css/main.css">
-</head>
-<body>
-  <div class="bg-mesh" id="bg-mesh" aria-hidden="true"></div>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-    <svg id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    <svg id="icon-moon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-text fade-in">
-          <p><em>Truth's a menace, science is a public danger.<br>As dangerous as it's been beneficent.</em></p>
-          <p class="hero-attr fade-in"><em>— Aldous Huxley, Brave New World</em></p>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11120f">
+    <meta name="description" content="ookamitai — experimental systems around AI, computation, sound, and creative technology.">
+    <meta property="og:title" content="ookamitai terminal">
+    <meta property="og:description" content="A working index of technical studies, research notes, music systems, and experiments.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ookamitai.com">
+    <title>ookamitai terminal</title>
+    <link rel="stylesheet" href="/src/css/main.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#primary-navigation">Skip to navigation</a>
+    <a class="skip-link skip-content" href="#profile">Skip to main content</a>
+
+    <header class="site-header" aria-label="Terminal header">
+      <a class="wordmark" href="#top" aria-label="ookamitai terminal, return to top">
+        <span class="wordmark-mark" aria-hidden="true">OT</span>
+        <span>ookamitai terminal</span>
+      </a>
+      <div class="header-status" aria-label="Terminal status">
+        <span><span class="status-dot" aria-hidden="true"></span> public access</span>
+        <time id="local-time" datetime="">--:-- CST</time>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="terminal-title">
+        <div class="hero-intro">
+          <p class="eyebrow">Personal systems directory / terminal 01</p>
+          <h1 id="terminal-title">Experimental systems around AI, computation, sound, and creative technology.</h1>
+          <p class="hero-copy">A working index of technical interests, small builds, research notes, and creative studies by ookamitai.</p>
         </div>
-      </div>
-    </section>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <nav class="footer-links">
-          <a href="mailto:me@ookamitai.com">Email</a>
-          <a href="https://x.com/ookamitai" target="_blank" rel="noopener noreferrer">X</a>
-          <a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer">Blog</a>
+        <nav class="departure-board" id="primary-navigation" aria-label="Primary navigation">
+          <div class="board-cap">
+            <div>
+              <span class="board-kicker">OOKAMITAI</span>
+              <strong>TERMINAL</strong>
+            </div>
+            <span class="board-code">DIR / 001</span>
+          </div>
+
+          <div class="board-columns" aria-hidden="true">
+            <span>Gate</span>
+            <span>Destination</span>
+            <span>Status</span>
+          </div>
+
+          <ol class="board-list">
+            <li><a class="board-row" href="#profile" data-gate="01" data-label="PROFILE" data-status="OPEN"><span class="board-gate">01</span><span class="flap-text" data-flap="PROFILE">PROFILE</span><span class="board-status">OPEN</span></a></li>
+            <li><a class="board-row" href="#projects" data-gate="02" data-label="PROJECT ARCHIVE" data-status="ACTIVE"><span class="board-gate">02</span><span class="flap-text" data-flap="PROJECT ARCHIVE">PROJECT ARCHIVE</span><span class="board-status">ACTIVE</span></a></li>
+            <li><a class="board-row" href="#ai-lab" data-gate="03" data-label="AI LABORATORY" data-status="TESTING"><span class="board-gate">03</span><span class="flap-text" data-flap="AI LABORATORY">AI LABORATORY</span><span class="board-status">TESTING</span></a></li>
+            <li><a class="board-row" href="#music" data-gate="04" data-label="MUSIC SYSTEMS" data-status="ON TIME"><span class="board-gate">04</span><span class="flap-text" data-flap="MUSIC SYSTEMS">MUSIC SYSTEMS</span><span class="board-status">ON TIME</span></a></li>
+            <li><a class="board-row" href="#experiments" data-gate="05" data-label="EXPERIMENTS" data-status="ONGOING"><span class="board-gate">05</span><span class="flap-text" data-flap="EXPERIMENTS">EXPERIMENTS</span><span class="board-status">ONGOING</span></a></li>
+            <li><a class="board-row" href="#contact" data-gate="06" data-label="CONTACT" data-status="READY"><span class="board-gate">06</span><span class="flap-text" data-flap="CONTACT">CONTACT</span><span class="board-status">READY</span></a></li>
+          </ol>
+
+          <div class="board-footer">
+            <span id="active-gate">GATE 01</span>
+            <span id="active-destination">PROFILE / OPEN</span>
+          </div>
         </nav>
-        <p class="footer-copy">&copy; 2025 ookamitai, et al.</p>
-      </div>
-    </footer>
-  </main>
+      </section>
 
-  <script type="module" src="src/js/main.js"></script>
-</body>
+      <section class="content-section profile-section" id="profile" aria-labelledby="profile-title">
+        <header class="section-header">
+          <p class="section-number">01 / Operator record</p>
+          <h2 id="profile-title">Profile</h2>
+        </header>
+        <div class="profile-layout">
+          <p class="section-lead">I’m ookamitai, a technical creator interested in the space between computation and creative practice.</p>
+          <div class="prose-stack">
+            <p>I build and study experimental systems around artificial intelligence, graphics, software, and sound. Current interests include machine learning, local language-model systems, generative tools, graphics programming, reverse engineering, open-source software, rhythm games, and music production.</p>
+            <p>I prefer small systems that can be inspected, understood, and changed. Much of my work begins as a question: how does this behave, what is hidden underneath it, and what happens if the parts are rearranged?</p>
+            <p class="quiet-note">This site is a working index rather than a complete résumé.</p>
+          </div>
+        </div>
+        <dl class="interest-grid" aria-label="Technical interests">
+          <div><dt>Computation</dt><dd>Local LLMs / machine learning / generative systems</dd></div>
+          <div><dt>Software</dt><dd>Reverse engineering / open source / tooling</dd></div>
+          <div><dt>Visual</dt><dd>Graphics programming / creative coding / interfaces</dd></div>
+          <div><dt>Sound</dt><dd>Rhythm games / composition / production</dd></div>
+        </dl>
+      </section>
+
+      <section class="content-section" id="projects" aria-labelledby="projects-title">
+        <header class="section-header section-header-split">
+          <div><p class="section-number">02 / Technical records</p><h2 id="projects-title">Project archive</h2></div>
+          <p>Selected workstreams and technical studies. Public source and longer notes are linked when available.</p>
+        </header>
+        <div class="archive-list">
+          <article class="archive-record">
+            <p class="record-id">PROJECT ID <strong>LLM–LOCAL</strong></p>
+            <div class="record-main"><h3>Local model systems</h3><span class="record-status status-active">Ongoing study</span></div>
+            <dl class="record-data"><div><dt>Tech</dt><dd>Local inference / tooling / evaluation</dd></div><div><dt>Description</dt><dd>Experiments with running, observing, and adapting language models on local systems.</dd></div><div><dt>Link</dt><dd><a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub archive ↗<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div></dl>
+          </article>
+          <article class="archive-record">
+            <p class="record-id">PROJECT ID <strong>GFX–RENDER</strong></p>
+            <div class="record-main"><h3>Graphics studies</h3><span class="record-status">Experimental</span></div>
+            <dl class="record-data"><div><dt>Tech</dt><dd>Real-time graphics / creative coding</dd></div><div><dt>Description</dt><dd>Small rendering studies focused on visual systems, motion, and computational form.</dd></div><div><dt>Link</dt><dd><a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer">Field notes ↗<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div></dl>
+          </article>
+          <article class="archive-record">
+            <p class="record-id">PROJECT ID <strong>SYS–RE</strong></p>
+            <div class="record-main"><h3>Software investigations</h3><span class="record-status status-active">Active</span></div>
+            <dl class="record-data"><div><dt>Tech</dt><dd>Reverse engineering / open source</dd></div><div><dt>Description</dt><dd>Technical investigations into how software behaves, communicates, and can be extended.</dd></div><div><dt>Link</dt><dd><a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub archive ↗<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div></dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="ai-lab" aria-labelledby="lab-title">
+        <header class="section-header section-header-split">
+          <div><p class="section-number">03 / Research log</p><h2 id="lab-title">AI laboratory</h2></div>
+          <p>Notes from local models, generative systems, and machine-learning experiments—including incomplete and negative results.</p>
+        </header>
+        <div class="log-table" aria-label="AI experiments">
+          <div class="log-row log-head" aria-hidden="true"><span>Experiment</span><span>Model</span><span>Status</span><span>Hardware</span><span>Result</span></div>
+          <article class="log-row"><h3>Local inference study</h3><p data-label="Model">Varies by test</p><p data-label="Status"><span class="inline-state">In progress</span></p><p data-label="Hardware">Local system</p><p data-label="Result">Observations on latency, memory use, output behavior, and practical constraints.</p></article>
+          <article class="log-row"><h3>Generative tooling</h3><p data-label="Model">Task-dependent</p><p data-label="Status"><span class="inline-state">Iterating</span></p><p data-label="Hardware">Available compute</p><p data-label="Result">Small prototypes exploring where generative models are useful, predictable, or limited.</p></article>
+        </div>
+      </section>
+
+      <section class="content-section music-section" id="music" aria-labelledby="music-title">
+        <header class="section-header"><p class="section-number">04 / Audio directory</p><h2 id="music-title">Music systems</h2></header>
+        <div class="music-layout">
+          <p class="section-lead">Music is another form of systems work: timing, structure, texture, and controlled variation.</p>
+          <div class="prose-stack"><p>My musical interests center on rhythm-game composition, Artcore, Jazz Fusion, UTAU, and sound design. I’m interested in how dense arrangements remain readable, how rhythm creates physical momentum, and how synthetic voices acquire character.</p><p class="genre-line" aria-label="Genres and practices">RHYTHM GAME / ARTCORE / JAZZ FUSION / UTAU / SOUND DESIGN</p><p class="quiet-note">Sketches and releases will be indexed here when they are ready for public listening.</p></div>
+        </div>
+      </section>
+
+      <section class="content-section" id="experiments" aria-labelledby="experiments-title">
+        <header class="section-header section-header-split"><div><p class="section-number">05 / Field notes</p><h2 id="experiments-title">Experiments</h2></div><p>Smaller investigations that do not need to become products—tools and studies built to answer one question.</p></header>
+        <div class="experiment-index">
+          <article><span class="experiment-code">EXP–001</span><h3>Terminal interface</h3><p>A navigation study based on mechanical airport information systems.</p><span class="experiment-state">Deployed</span></article>
+          <article><span class="experiment-code">EXP–002</span><h3>Local inference notes</h3><p>Practical observations from running model systems close to the hardware.</p><span class="experiment-state">Ongoing</span></article>
+          <article><span class="experiment-code">EXP–003</span><h3>Rendering and motion</h3><p>Studies in graphics, timing, physical interfaces, and computational form.</p><span class="experiment-state">Study</span></article>
+          <article><span class="experiment-code">EXP–004</span><h3>Audio system sketches</h3><p>Investigations into arrangement, synthesis, rhythm, and controlled density.</p><span class="experiment-state">Sketching</span></article>
+        </div>
+      </section>
+
+      <section class="content-section contact-section" id="contact" aria-labelledby="contact-title">
+        <header class="section-header"><p class="section-number">06 / Public channels</p><h2 id="contact-title">Transmission channels</h2></header>
+        <p class="section-lead">For technical discussion, project notes, or a quiet exchange of ideas.</p>
+        <address class="contact-list">
+          <a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>github.com/ookamitai<span class="visually-hidden"> (opens in a new tab)</span></strong><span aria-hidden="true">↗</span></a>
+          <a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer"><span>Blog</span><strong>blog.ookamitai.com<span class="visually-hidden"> (opens in a new tab)</span></strong><span aria-hidden="true">↗</span></a>
+          <a href="mailto:me@ookamitai.com"><span>Email</span><strong>me@ookamitai.com</strong><span aria-hidden="true">↗</span></a>
+          <a href="https://x.com/ookamitai" target="_blank" rel="noopener noreferrer"><span>X</span><strong>@ookamitai<span class="visually-hidden"> (opens in a new tab)</span></strong><span aria-hidden="true">↗</span></a>
+        </address>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>OOKAMITAI TERMINAL / PUBLIC ACCESS</p>
+      <p>SYSTEM STATUS: <span>ONLINE</span></p>
+      <p>© <span id="year">2026</span> OOKAMITAI</p>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
 </html>
