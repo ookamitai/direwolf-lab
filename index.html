@@ -12,57 +12,50 @@
     <link rel="stylesheet" href="/src/css/main.css">
   </head>
   <body>
+    <iframe class="lv-background" src="/src/assets/lv_background_standalone.html" title="Animated Linked Verse background" aria-hidden="true"></iframe>
+    <div class="background-dim" aria-hidden="true"></div>
     <main class="page-shell">
       <nav class="topbar" aria-label="Primary navigation">
-        <a class="monogram" href="#top" aria-label="ookamitai, back to top">o.</a>
-        <p class="availability"><span aria-hidden="true"></span> ookamitai / 2026</p>
-        <div class="top-links">
-          <a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub <i aria-hidden="true">↗</i></a>
-          <a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer">Blog <i aria-hidden="true">↗</i></a>
-        </div>
+        <span class="top-note">systems / sound / software</span>
       </nav>
 
       <section class="hero" id="top" aria-labelledby="page-title">
         <div class="orb orb-one" aria-hidden="true"></div>
         <div class="orb orb-two" aria-hidden="true"></div>
-        <p class="kicker reveal">independent work · asia/shanghai</p>
-        <h1 id="page-title" class="reveal">I build systems.<br><em>Sometimes</em> they sing.</h1>
-        <p class="intro reveal">Software, models, graphics, and music—mostly projects made to understand how things work.</p>
+        <h1 id="page-title" class="reveal">AI, software, graphics,<br>and <em>sound</em>.</h1>
+        <p class="intro reveal">I build local model systems, visual experiments, reverse-engineered tools, and music—small work made carefully.</p>
 
         <div class="hero-foot reveal">
-          <p>Independent developer<br>&amp; occasional composer.</p>
-          <a class="email-link" href="mailto:me@ookamitai.com">Email me <span aria-hidden="true">↗</span></a>
+          <div class="contact-capsule">
+            <a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer">Blog <span aria-hidden="true">↗</span></a>
+            <a href="mailto:me@ookamitai.com">Email <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
         <section class="about" aria-labelledby="about-title">
-        <div class="section-label"><span>02</span><span id="about-title">Current surface area</span></div>
         <div class="about-body">
-          <p class="statement" id="cloud-note">Move through the field.<br>Pick a thread.</p>
-          <div class="cloud" aria-label="Areas of practice. Select a topic for details.">
-            <button class="large" data-note="Running models close to the machine.">Artificial intelligence</button>
-            <button data-note="Interfaces, tools, and small useful machines.">creative technology</button>
-            <button class="accent" data-note="Inference, evaluation, and practical constraints.">local models</button>
-            <button data-note="Real-time rendering and visual studies.">graphics</button>
-            <button class="small" data-note="Building in public when it makes sense.">open source</button>
-            <button class="medium" data-note="Making systems that produce surprising material.">generative systems</button>
-            <button data-note="Texture, timing, and synthetic character.">sound design</button>
-            <button class="accent medium" data-note="Taking things apart to learn their shape.">reverse engineering</button>
-            <button class="small" data-note="A useful tool, not a religion.">machine learning</button>
-            <button data-note="The part that makes a system physical.">rhythm</button>
-            <button class="medium" data-note="Tools for seeing, making, and changing things.">software tools</button>
-            <button class="small" data-note="Code as a visual material.">creative coding</button>
-            <button data-note="Arranging sound into a place to be.">music production</button>
+          <div class="cloud" aria-label="Areas of practice.">
+            <span class="large">Artificial intelligence</span>
+            <span>creative technology</span>
+            <span class="accent">local models</span>
+            <span>graphics</span>
+            <span class="small">open source</span>
+            <span class="medium">generative systems</span>
+            <span>sound design</span>
+            <span class="accent medium">reverse engineering</span>
+            <span class="small">machine learning</span>
+            <span>rhythm</span>
+            <span class="medium">software tools</span>
+            <span class="small">creative coding</span>
+            <span>music production</span>
           </div>
         </div>
         </section>
       </section>
 
       <footer>
-        <p>© <span id="year"></span> ookamitai</p>
-        <a href="https://github.com/ookamitai" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://blog.ookamitai.com/" target="_blank" rel="noopener noreferrer">Blog</a>
-        <a href="mailto:me@ookamitai.com">Email</a>
-        <p class="footer-note">Select a topic to inspect it.</p>
+        <p>© <span id="year"></span></p>
       </footer>
     </main>
     <script type="module" src="/src/js/main.js"></script>
